@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway', sans-serif;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5, #42e695, #fddb92);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      position: relative;
+      color: #fff;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .quotes_wrapper {
+      z-index: 1;
+      text-align: center;
+    }
+
+    .display_style {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 30px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin: 0 auto;
+      transition: background 0.3s ease;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0;
+      line-height: 1.4;
+      color: #fff;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 15px 30px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .fade {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quotes_wrapper">
+    <div class="display_style">
+      <h1 id="display">Quotes Generator</h1>
+    </div>
+    <button id="gen" onclick="genquote()">Generate Quote</button>
+  </div>
+
+  <script>
+    const quotes_array = [
+      "Doubt kills more dreams than failure ever will. – Suzy Kassem",
+      "Some women choose to follow men, and some choose to follow their dreams. – Lady Gaga",
+      "Life is what happens to us while we are making other plans. – Allen Saunders",
+      "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+      "Do one thing every day that scares you. – Eleanor Roosevelt"
+    ];
+
+    function genquote() {
+      const display = document.getElementById("display");
+      const num_random = Math.floor(Math.random() * quotes_array.length);
+      display.classList.remove('fade');
+      void display.offsetWidth;
+      display.innerHTML = quotes_array[num_random];
+      display.classList.add('fade');
+    }
+  </script>
+</body>
+
+</html>
